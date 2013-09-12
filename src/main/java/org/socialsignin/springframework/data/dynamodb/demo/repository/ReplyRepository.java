@@ -15,14 +15,23 @@
  */
 package org.socialsignin.springframework.data.dynamodb.demo.repository;
 
+import java.util.List;
+
 import org.socialsignin.springframework.data.dynamodb.demo.domain.Reply;
-import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyCompositeId;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  * Repository to manage {@link Reply} instances.
  * 
  * @author Michael Lavelle
  */
-public interface ReplyRepository extends CrudRepository<Reply, ReplyId> {
+public interface ReplyRepository extends CrudRepository<Reply, ReplyCompositeId> {
+	
+	public List<Reply> findByReplyId(@Param("replyId") String replyId);
+	public List<Reply> findByMessage(@Param("message") String message);
+	public List<Reply> findByReplyDateTime(@Param("replyDateTime") String replyDateTime);
+
+	
 }

@@ -18,7 +18,8 @@ package org.socialsignin.springframework.data.dynamodb.demo.config;
 import java.net.URLDecoder;
 import java.util.Date;
 
-import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.Reply;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyCompositeId;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,7 +55,7 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 	@Override
 	public RepositoryRestConfiguration config() {
 		return super.config().setReturnBodyOnCreate(true)
-				.setReturnBodyOnUpdate(true);
+				.setReturnBodyOnUpdate(true).exposeIdsFor(Reply.class,Thread.class);
 	}
 
 	/**
@@ -73,13 +74,13 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 
 	}
 
-	public Converter<String, ReplyId> stringToReplyIdConverter() {
-		return new Converter<String, ReplyId>() {
+	public Converter<String, ReplyCompositeId> stringToReplyIdConverter() {
+		return new Converter<String, ReplyCompositeId>() {
 
 			@SuppressWarnings("deprecation")
 			@Override
-			public ReplyId convert(String source) {
-				ReplyId id = new ReplyId();
+			public ReplyCompositeId convert(String source) {
+				ReplyCompositeId id = new ReplyCompositeId();
 				String[] parts = source.split("-");
 				id.setReplyId(URLDecoder.decode(parts[1]));
 				String replyDateTime = DemoRepositoryLinkBuilder.DATE_FORMAT

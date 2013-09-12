@@ -21,7 +21,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyCompositeId;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
 import org.springframework.data.rest.core.mapping.ResourceMetadata;
 import org.springframework.data.rest.webmvc.support.RepositoryLinkBuilder;
@@ -46,8 +46,8 @@ public class DemoRepositoryLinkBuilder extends RepositoryLinkBuilder {
 	@Override
 	public RepositoryLinkBuilder slash(Object object) {
 
-		if (object instanceof ReplyId) {
-			ReplyId replyId = (ReplyId) object;
+		if (object instanceof ReplyCompositeId) {
+			ReplyCompositeId replyId = (ReplyCompositeId) object;
 			try {
 				return slash(DATE_FORMAT.parse(replyId.getReplyDateTime())
 						.getTime()

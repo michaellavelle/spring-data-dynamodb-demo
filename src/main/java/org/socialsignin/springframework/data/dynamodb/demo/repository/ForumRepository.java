@@ -15,8 +15,11 @@
  */
 package org.socialsignin.springframework.data.dynamodb.demo.repository;
 
+import java.util.List;
+
 import org.socialsignin.springframework.data.dynamodb.demo.domain.Forum;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  * Repository to manage {@link Forum} instances.
@@ -24,4 +27,8 @@ import org.springframework.data.repository.CrudRepository;
  * @author Michael Lavelle
  */
 public interface ForumRepository extends CrudRepository<Forum, String> {
+	
+	public List<Forum> findByCategory(@Param("category") String category);
+	public List<Forum> findByThreads(@Param("threads") Integer threads);
+
 }

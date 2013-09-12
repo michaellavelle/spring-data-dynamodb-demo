@@ -45,36 +45,35 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Reply {
 
 	@Id
-	@JsonIgnore
-	private ReplyId replyId;
+	private ReplyCompositeId replyCompositeId;
 	private String message;
 	private String postedBy;
 
 	@DynamoDBHashKey(attributeName = "Id")
-	public String getId() {
-		return replyId != null ? replyId.getReplyId() : null;
+	public String getReplyId() {
+		return replyCompositeId != null ? replyCompositeId.getReplyId() : null;
 	}
 
-	public void setId(String id) {
+	public void setReplyId(String id) {
 
-		if (replyId == null) {
-			replyId = new ReplyId();
+		if (replyCompositeId == null) {
+			replyCompositeId = new ReplyCompositeId();
 		}
-		replyId.setReplyId(id);
+		replyCompositeId.setReplyId(id);
 
 	}
 
 	@DynamoDBRangeKey(attributeName = "ReplyDateTime")
 	public String getReplyDateTime() {
-		return replyId != null ? replyId.getReplyDateTime() : null;
+		return replyCompositeId != null ? replyCompositeId.getReplyDateTime() : null;
 	}
 
 	public void setReplyDateTime(String replyDateTime) {
 
-		if (replyId == null) {
-			replyId = new ReplyId();
+		if (replyCompositeId == null) {
+			replyCompositeId = new ReplyCompositeId();
 		}
-		replyId.setReplyDateTime(replyDateTime);
+		replyCompositeId.setReplyDateTime(replyDateTime);
 
 	}
 

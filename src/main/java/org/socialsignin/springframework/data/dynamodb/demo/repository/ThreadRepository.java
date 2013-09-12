@@ -25,4 +25,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Michael Lavelle
  */
 public interface ThreadRepository extends CrudRepository<Thread, ThreadId> {
+	
+
 }

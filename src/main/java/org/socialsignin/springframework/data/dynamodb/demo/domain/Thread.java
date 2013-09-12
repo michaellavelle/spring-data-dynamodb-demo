@@ -49,7 +49,6 @@ public class Thread {
 	private int replies;
 
 	@Id
-	@JsonIgnore
 	private ThreadId threadId;
 
 	@DynamoDBHashKey(attributeName = "ForumName")
@@ -58,7 +57,6 @@ public class Thread {
 	}
 
 	public void setForumName(String forumName) {
-		// this.forumName = forumName;
 		if (threadId == null) {
 			threadId = new ThreadId();
 		}
@@ -71,7 +69,6 @@ public class Thread {
 	}
 
 	public void setSubject(String subject) {
-		// this.subject = subject;
 		if (threadId == null) {
 			threadId = new ThreadId();
 		}

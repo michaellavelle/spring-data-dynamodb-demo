@@ -28,7 +28,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
  * 
  * @author Michael Lavelle
  */
-public class ReplyId implements Serializable {
+public class ReplyCompositeId implements Serializable {
 
 	/**
 	 * 
