@@ -1,7 +1,7 @@
 spring-data-dynamodb-demo
 =========================
 
-Demo of AmazonDB Spring-Data repositories using Spring-Data-Rest
+Demo of Amazon DynamoDB Spring-Data repositories using Spring-Data-Rest
 ----------------------------------------------------------------
 
 To get started
