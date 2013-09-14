@@ -32,7 +32,7 @@ public interface ReplyRepository extends PagingAndSortingRepository<Reply, Reply
 	public Page<Reply> findByReplyId(@Param("replyId") String replyId,Pageable pageable);
 	public Page<Reply> findByReplyIdOrderByReplyDateTimeDesc(@Param("replyId") String replyId,Pageable pageable);
 	public Page<Reply> findByMessage(@Param("message") String message,Pageable pageable);
-	public Page<Reply> findByReplyDateTime(@Param("replyDateTime") Pageable pageable);
+	public Page<Reply> findByReplyDateTime(@Param("replyDateTime") String replyDateTime,Pageable pageable);
 
 	
 }
