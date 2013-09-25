@@ -17,14 +17,20 @@ package org.socialsignin.springframework.data.dynamodb.demo.repository;
 
 import org.socialsignin.springframework.data.dynamodb.demo.domain.Thread;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  * Repository to manage {@link Thread} instances.
  * 
  * @author Michael Lavelle
  */
-public interface ThreadRepository extends CrudRepository<Thread, ThreadId> {
+public interface ThreadRepository extends PagingAndSortingRepository<Thread, ThreadId> {
 	
+	public Page<Thread> findByForumName(@Param("forumName") String forumName,Pageable pageable);
+	public Thread findByForumNameAndSubject(@Param("forumName") String forumName,@Param("subject") String subject);
+	public Thread findByThreadId(@Param("threadId") ThreadId threadId);
 
 }

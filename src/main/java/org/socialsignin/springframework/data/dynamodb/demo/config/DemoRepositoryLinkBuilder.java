@@ -21,8 +21,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyCompositeId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyId;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadIdMarshaller;
 import org.springframework.data.rest.core.mapping.ResourceMetadata;
 import org.springframework.data.rest.webmvc.support.RepositoryLinkBuilder;
 
@@ -46,13 +47,14 @@ public class DemoRepositoryLinkBuilder extends RepositoryLinkBuilder {
 	@Override
 	public RepositoryLinkBuilder slash(Object object) {
 
-		if (object instanceof ReplyCompositeId) {
-			ReplyCompositeId replyId = (ReplyCompositeId) object;
+		if (object instanceof ReplyId) {
+			ReplyId replyId = (ReplyId) object;
 			try {
+				ThreadIdMarshaller threadIdMarshaller = new ThreadIdMarshaller();
 				return slash(DATE_FORMAT.parse(replyId.getReplyDateTime())
 						.getTime()
 						+ "-"
-						+ URLEncoder.encode(replyId.getReplyId()));
+						+ URLEncoder.encode(threadIdMarshaller.marshall(replyId.getThreadId())));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -60,7 +62,7 @@ public class DemoRepositoryLinkBuilder extends RepositoryLinkBuilder {
 		}
 		if (object instanceof ThreadId) {
 			ThreadId threadId = (ThreadId) object;
-			return slash(URLEncoder.encode(threadId.getForumName()) + "-"
+			return slash(URLEncoder.encode(threadId.getForumName()) + "_"
 					+ URLEncoder.encode(threadId.getSubject()));
 
 		}

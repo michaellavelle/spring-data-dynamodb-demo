@@ -18,9 +18,11 @@ package org.socialsignin.springframework.data.dynamodb.demo.config;
 import java.net.URLDecoder;
 import java.util.Date;
 
+import org.socialsignin.springframework.data.dynamodb.demo.domain.Forum;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.Reply;
-import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyCompositeId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyId;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
+import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadIdMarshaller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -55,7 +57,7 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 	@Override
 	public RepositoryRestConfiguration config() {
 		return super.config().setReturnBodyOnCreate(true)
-				.setReturnBodyOnUpdate(true).exposeIdsFor(Reply.class,Thread.class);
+				.setReturnBodyOnUpdate(true).exposeIdsFor(Reply.class,Thread.class,Forum.class);
 	}
 
 	/**
@@ -74,15 +76,16 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 
 	}
 
-	public Converter<String, ReplyCompositeId> stringToReplyIdConverter() {
-		return new Converter<String, ReplyCompositeId>() {
+	public Converter<String, ReplyId> stringToReplyIdConverter() {
+		return new Converter<String, ReplyId>() {
 
 			@SuppressWarnings("deprecation")
 			@Override
-			public ReplyCompositeId convert(String source) {
-				ReplyCompositeId id = new ReplyCompositeId();
+			public ReplyId convert(String source) {
+				ReplyId id = new ReplyId();
+				ThreadIdMarshaller threadIdMarshaller = new ThreadIdMarshaller();
 				String[] parts = source.split("-");
-				id.setReplyId(URLDecoder.decode(parts[1]));
+				id.setThreadId(threadIdMarshaller.unmarshall(ThreadId.class,URLDecoder.decode(parts[1])));
 				String replyDateTime = DemoRepositoryLinkBuilder.DATE_FORMAT
 						.format(new Date(Long.parseLong(parts[0])));
 				id.setReplyDateTime(replyDateTime);
@@ -96,11 +99,12 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 	public Converter<String, ThreadId> stringToThreadIdConverter() {
 		return new Converter<String, ThreadId>() {
 
+
 			@SuppressWarnings("deprecation")
 			@Override
 			public ThreadId convert(String source) {
 				ThreadId id = new ThreadId();
-				String[] parts = source.split("-");
+				String[] parts = source.split("_");
 				id.setForumName(URLDecoder.decode(parts[0]));
 				id.setSubject(URLDecoder.decode(parts[1]));
 				return id;

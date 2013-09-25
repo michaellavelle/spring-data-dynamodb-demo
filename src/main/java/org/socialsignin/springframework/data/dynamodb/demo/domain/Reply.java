@@ -19,6 +19,7 @@ import org.springframework.data.annotation.Id;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMarshalling;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,35 +46,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Reply {
 
 	@Id
-	private ReplyCompositeId replyCompositeId;
+	private ReplyId replyId;
 	private String message;
 	private String postedBy;
 
 	@DynamoDBHashKey(attributeName = "Id")
-	public String getReplyId() {
-		return replyCompositeId != null ? replyCompositeId.getReplyId() : null;
+	@DynamoDBMarshalling(marshallerClass=ThreadIdMarshaller.class)
+	public ThreadId getThreadId() {
+		return replyId != null ? replyId.getThreadId() : null;
 	}
 
-	public void setReplyId(String id) {
+	public void setThreadId(ThreadId id) {
 
-		if (replyCompositeId == null) {
-			replyCompositeId = new ReplyCompositeId();
+		if (replyId == null) {
+			replyId = new ReplyId();
 		}
-		replyCompositeId.setReplyId(id);
+		replyId.setThreadId(id);
 
 	}
 
 	@DynamoDBRangeKey(attributeName = "ReplyDateTime")
 	public String getReplyDateTime() {
-		return replyCompositeId != null ? replyCompositeId.getReplyDateTime() : null;
+		return replyId != null ? replyId.getReplyDateTime() : null;
 	}
 
 	public void setReplyDateTime(String replyDateTime) {
 
-		if (replyCompositeId == null) {
-			replyCompositeId = new ReplyCompositeId();
+		if (replyId == null) {
+			replyId = new ReplyId();
 		}
-		replyCompositeId.setReplyDateTime(replyDateTime);
+		replyId.setReplyDateTime(replyDateTime);
 
 	}
 

@@ -139,4 +139,12 @@ public class Thread {
 		this.replies = replies;
 	}
 
+	public ThreadId getThreadId() {
+		return threadId;
+	}
+
+	public void setThreadId(ThreadId threadId) {
+		this.threadId = threadId;
+	}
+
 }

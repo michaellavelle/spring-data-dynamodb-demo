@@ -28,14 +28,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
  * 
  * @author Michael Lavelle
  */
-public class ReplyCompositeId implements Serializable {
+public class ReplyId implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String replyId;
+	private ThreadId threadId;
 	private String replyDateTime;
 
 	@DynamoDBRangeKey
@@ -48,12 +48,12 @@ public class ReplyCompositeId implements Serializable {
 	}
 
 	@DynamoDBHashKey
-	public String getReplyId() {
-		return replyId;
+	public ThreadId getThreadId() {
+		return threadId;
 	}
 
-	public void setReplyId(String id) {
-		this.replyId = id;
+	public void setThreadId(ThreadId id) {
+		this.threadId = id;
 	}
 
 }

@@ -15,6 +15,10 @@
  */
 package org.socialsignin.springframework.data.dynamodb.demo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.data.repository.support.Repositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.core.mapping.ResourceMappings;
@@ -33,6 +37,7 @@ public class DemoRepositoryEntityLinks extends RepositoryEntityLinks {
 
 	private ResourceMappings resourceMappings;
 	private RepositoryRestConfiguration config;
+
 
 	public DemoRepositoryEntityLinks(Repositories repositories,
 			ResourceMappings mappings, RepositoryRestConfiguration config) {
