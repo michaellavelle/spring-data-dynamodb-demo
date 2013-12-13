@@ -8,7 +8,7 @@
 	<name>socialsignin-showcase</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<org.springframework.version>3.2.4.RELEASE</org.springframework.version>
+		<org.springframework.version>3.2.5.RELEASE</org.springframework.version>
 		<org.springframework.dao.version>2.0.8</org.springframework.dao.version>
 		<springdata.commons>1.7.0.BUILD-SNAPSHOT</springdata.commons>
 		
@@ -37,11 +37,13 @@
 			<artifactId>spring-data-rest-webmvc</artifactId>
 			<version>${sd.rest}</version>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-repository</artifactId>
 			<version>${sd.rest}</version>
 		</dependency>
+		-->
 				<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-commons</artifactId>
