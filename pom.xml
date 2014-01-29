@@ -8,7 +8,7 @@
 	<name>socialsignin-showcase</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<org.springframework.version>3.2.5.RELEASE</org.springframework.version>
+		<org.springframework.version>3.2.7.RELEASE</org.springframework.version>
 		<org.springframework.dao.version>2.0.8</org.springframework.dao.version>
 		<springdata.commons>1.7.0.BUILD-SNAPSHOT</springdata.commons>
 		
@@ -63,7 +63,7 @@
 			<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
-			<version>0.8.0.RELEASE</version>
+			<version>0.9.0.RELEASE</version>
 		</dependency>
 			<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
