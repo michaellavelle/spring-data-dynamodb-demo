@@ -24,6 +24,7 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.core.mapping.ResourceMappings;
 import org.springframework.data.rest.core.mapping.ResourceMetadata;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
+import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
 import org.springframework.hateoas.LinkBuilder;
 
 /**
@@ -40,8 +41,8 @@ public class DemoRepositoryEntityLinks extends RepositoryEntityLinks {
 
 
 	public DemoRepositoryEntityLinks(Repositories repositories,
-			ResourceMappings mappings, RepositoryRestConfiguration config) {
-		super(repositories, mappings, config);
+			ResourceMappings mappings, RepositoryRestConfiguration config, HateoasPageableHandlerMethodArgumentResolver resolver) {
+		super(repositories, mappings, config, resolver);
 		this.resourceMappings = mappings;
 		this.config = config;
 	}

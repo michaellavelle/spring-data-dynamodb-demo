@@ -72,7 +72,7 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 	public EntityLinks entityLinks() {
 
 		return new DemoRepositoryEntityLinks(repositories(),
-				resourceMappings(), config());
+				resourceMappings(), config(),pageableResolver());
 
 	}
 
