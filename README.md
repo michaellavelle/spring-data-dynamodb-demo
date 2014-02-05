@@ -6,7 +6,7 @@ Demo of Amazon DynamoDB Spring-Data repositories using Spring-Data-Rest
 
 To get started
 
-1. Create and populate Amazon DynamoDB tables as described in Amazon's example tutorials:
+1. Create and populate Amazon DynamoDB "Forum", "Thread" and "Reply" tables as described in Amazon's example tutorials:
 
 http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/JavaQueryScanORMModelExample.html
 
