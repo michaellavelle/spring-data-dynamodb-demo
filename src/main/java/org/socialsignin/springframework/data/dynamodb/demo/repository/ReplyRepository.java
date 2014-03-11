@@ -16,11 +16,13 @@
 package org.socialsignin.springframework.data.dynamodb.demo.repository;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
+import org.socialsignin.spring.data.dynamodb.repository.EnableScanCount;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.Reply;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ReplyId;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -34,8 +36,17 @@ public interface ReplyRepository extends PagingAndSortingRepository<Reply, Reply
 	public Page<Reply> findByThreadId(@Param("threadId") ThreadId threadId,Pageable pageable);
 	public Page<Reply> findByThreadIdOrderByReplyDateTimeDesc(@Param("threadId") ThreadId threadId,Pageable pageable);
 	
-	@EnableScan
+	@EnableScan 
+	@EnableScanCount
 	public Page<Reply> findByMessage(@Param("message") String message,Pageable pageable);
+	
+	@EnableScan 
+	public Slice<Reply> findSliceByMessage(@Param("message") String message,Pageable pageable);
+	
+	
+	@EnableScan 
+	@EnableScanCount
+	public Page<Reply> findAll(Pageable pageable);
 	
 	@EnableScan
 	public Page<Reply> findByReplyDateTime(@Param("replyDateTime") String replyDateTime,Pageable pageable);
