@@ -16,6 +16,8 @@
 package org.socialsignin.springframework.data.dynamodb.demo.config;
 
 import org.apache.commons.lang3.StringUtils;
+import org.socialsignin.spring.data.dynamodb.core.DynamoDBOperations;
+import org.socialsignin.spring.data.dynamodb.core.DynamoDBTemplate;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -47,7 +49,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
  */
 @Configuration
 @EnableWebMvc
-@EnableDynamoDBRepositories(basePackages = "org.socialsignin.springframework.data.dynamodb.demo.repository")
+@EnableDynamoDBRepositories(basePackages = "org.socialsignin.springframework.data.dynamodb.demo.repository",dynamoDBOperationsRef="dynamoDBOperations")
 @Import(value = DemoRestMvcConfiguration.class)
 public class SpringDataDynamoDemoConfig {
 
@@ -68,6 +70,12 @@ public class SpringDataDynamoDemoConfig {
 			amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
 		}
 		return amazonDynamoDB;
+	}
+	
+	@Bean
+	public DynamoDBOperations dynamoDBOperations()
+	{
+		return new DynamoDBTemplate(amazonDynamoDB());
 	}
 
 	@Bean
