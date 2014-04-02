@@ -15,6 +15,8 @@
  */
 package org.socialsignin.springframework.data.dynamodb.demo.domain;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -47,6 +49,7 @@ public class Reply {
 
 	@Id
 	private ReplyId replyId;
+	@NotNull
 	private String message;
 	private String postedBy;
 

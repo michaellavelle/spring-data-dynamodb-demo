@@ -18,11 +18,13 @@ package org.socialsignin.springframework.data.dynamodb.demo.config;
 import org.apache.commons.lang3.StringUtils;
 import org.socialsignin.spring.data.dynamodb.core.DynamoDBOperations;
 import org.socialsignin.spring.data.dynamodb.core.DynamoDBTemplate;
+import org.socialsignin.spring.data.dynamodb.mapping.event.ValidatingDynamoDBEventListener;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -72,6 +74,7 @@ public class SpringDataDynamoDemoConfig {
 		return amazonDynamoDB;
 	}
 	
+	
 	@Bean
 	public DynamoDBOperations dynamoDBOperations()
 	{
@@ -81,6 +84,25 @@ public class SpringDataDynamoDemoConfig {
 	@Bean
 	public AWSCredentials amazonAWSCredentials() {
 		return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
+	}
+	
+	/** The following validation-related beans are optional - only
+	 * required if JSR 303 validation is desired.  For validation to 
+	 * work, the @EnableDynamoDBRepositories must be configured with
+	 * a reference to DynamoDBOperations bean, rather than with
+	 * reference to AmazonDynamoDB client
+	 * */
+	
+	@Bean 
+	public LocalValidatorFactoryBean validator()
+	{
+		return new LocalValidatorFactoryBean();
+	}
+	
+	@Bean
+	public ValidatingDynamoDBEventListener validatingDynamoDBEventListener()
+	{
+		return new ValidatingDynamoDBEventListener(validator());
 	}
 
 }
