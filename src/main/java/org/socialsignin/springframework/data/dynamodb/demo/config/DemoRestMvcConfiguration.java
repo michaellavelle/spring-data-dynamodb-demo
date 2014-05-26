@@ -25,6 +25,7 @@ import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadId;
 import org.socialsignin.springframework.data.dynamodb.demo.domain.ThreadIdMarshaller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -72,7 +73,7 @@ public class DemoRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 	public EntityLinks entityLinks() {
 
 		return new DemoRepositoryEntityLinks(repositories(),
-				resourceMappings(), config(),pageableResolver());
+				resourceMappings(), config(),pageableResolver(),backendIdConverterRegistry());
 
 	}
 

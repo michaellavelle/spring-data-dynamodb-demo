@@ -8,11 +8,11 @@
 	<name>socialsignin-showcase</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<org.springframework.version>3.2.7.RELEASE</org.springframework.version>
+		<org.springframework.version>4.0.5.RELEASE</org.springframework.version>
 		<org.springframework.dao.version>2.0.8</org.springframework.dao.version>
-		<springdata.commons>1.8.0.M1</springdata.commons>
+		<springdata.commons>1.8.0.RELEASE</springdata.commons>
 		
-		<sd.rest>2.0.0.RC1</sd.rest>
+		<sd.rest>2.1.0.RELEASE</sd.rest>
 	
 	</properties>
 	<repositories>
@@ -33,6 +33,11 @@
 	</repositories>
 	<dependencies>
 	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-webmvc</artifactId>
 			<version>${sd.rest}</version>
@@ -63,7 +68,7 @@
 			<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
-			<version>0.9.0.RELEASE</version>
+			<version>0.12.0.RELEASE</version>
 		</dependency>
 			<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -134,6 +139,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+		<groupId>org.atteo</groupId>
+		<artifactId>evo-inflector</artifactId>
+		<version>1.0.1</version>
 		</dependency>
 	</dependencies>
 	<build>

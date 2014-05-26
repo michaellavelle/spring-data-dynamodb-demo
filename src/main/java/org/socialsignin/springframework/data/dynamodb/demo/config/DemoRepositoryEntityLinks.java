@@ -19,6 +19,7 @@ import org.springframework.data.repository.support.Repositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.core.mapping.ResourceMappings;
 import org.springframework.data.rest.core.mapping.ResourceMetadata;
+import org.springframework.data.rest.webmvc.spi.BackendIdConverter;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
 import org.springframework.hateoas.LinkBuilder;
@@ -37,8 +38,8 @@ public class DemoRepositoryEntityLinks extends RepositoryEntityLinks {
 
 
 	public DemoRepositoryEntityLinks(Repositories repositories,
-			ResourceMappings mappings, RepositoryRestConfiguration config, HateoasPageableHandlerMethodArgumentResolver resolver) {
-		super(repositories, mappings, config, resolver);
+			ResourceMappings mappings, RepositoryRestConfiguration config, HateoasPageableHandlerMethodArgumentResolver resolver,org.springframework.plugin.core.PluginRegistry<BackendIdConverter,Class<?>> idConverters) {
+		super(repositories, mappings, config, resolver,idConverters);
 		this.resourceMappings = mappings;
 		this.config = config;
 	}
