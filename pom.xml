@@ -17,8 +17,8 @@
 	</properties>
 	<repositories>
 		<repository>
-			<id>opensourceagility-snapshots</id>
-			<url>http://repo.opensourceagility.com/snapshots</url>
+			<id>opensourceagility-release</id>
+			<url>http://repo.opensourceagility.com/release</url>
 		</repository>
 		<repository>
 			<id>spring-maven-milestone</id>
@@ -98,7 +98,7 @@
 		<dependency>
 			<groupId>org.socialsignin</groupId>
 			<artifactId>spring-data-dynamodb</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>1.0.1.RELEASE</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
